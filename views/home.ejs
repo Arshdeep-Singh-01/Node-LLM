@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>askLLM</title>
+</head>
+<body>
+    <div id="question">
+        <h2>Ask a question</h2>
+        <form method="post">
+            <input type="text" name="question" placeholder="Type your question here">
+            <button type="submit">Ask</button>
+        </form>
+    </div>
+    <div id="result"></div>
+    <script>
+        const form = document.querySelector('form');
+        const result = document.querySelector('#result');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const question = form.question.value;
+            if(!question){
+                return alert('Please enter a question');
+            }
+            const response = await fetch('/askLLM', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ text: question })
+            });
+            const data = await response.json();
+            console.log("in html", data.text);
+            result.textContent = data.text;
+        });
+    </script>
+</body>
+</html>

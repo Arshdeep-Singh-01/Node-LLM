@@ -1,0 +1,19 @@
+# Ignore node modules and .env files
+/node_modules
+.env
+
+
+
+
+# ignoreing standard files
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
